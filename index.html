@@ -184,7 +184,7 @@
   .socials a:hover{border-color:var(--accent); color:var(--accent-ink)}
 
   footer{border-top:1px solid var(--line); padding:26px 0; color:var(--muted); font-size:13.5px}
-  .foot-in{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  .foot-in{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; text-align:center}
 
   .rv{opacity:0; transform:translateY(34px) scale(.985); filter:blur(8px);
     transition:.95s cubic-bezier(.16,1,.3,1)}
@@ -347,7 +347,7 @@
           <div class="win"><i></i><i></i><i></i></div>
 <pre style="margin:0;font:inherit;white-space:pre-wrap"><span class="c">// who am i</span>
 <span class="k">const</span> arat = {
-  name: <span class="s">"Arat Zarei"</span>,
+  name: <span class="s">"Aratzareii"</span>,
   role: <span class="s">"bots, web &amp; AI tools"</span>,
   stack: [<span class="s">"Telegram"</span>, <span class="s">"Web"</span>, <span class="s">"AI"</span>],
   status: <span class="ok">"available ✓"</span>
@@ -504,8 +504,8 @@
 
 <footer>
   <div class="wrap foot-in">
-    <span>© <span id="yr">2026</span> آرات زارعی — ساخته‌شده با کد تمیز.</span>
-    <span>طراحی و توسعه: آرات</span>
+    <span id="copy">2026-Aratzareii</span>
+    <span>ساخته شده توسط MrArat</span>
   </div>
 </footer>
 
@@ -533,8 +533,6 @@
       mnav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
     }
   });
-
-  document.getElementById('yr').textContent = new Date().getFullYear();
 
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
