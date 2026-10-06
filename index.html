@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>آرات زارعی | توسعه‌دهندهٔ ربات، وب و ابزارهای هوشمند</title>
-<meta name="description" content="پورتفولیوی آرات زارعی؛ توسعه‌دهندهٔ ربات، وب و ابزارهای هوشمند. ساخت ربات تلگرامی و مینی‌اپ، وب‌سایت‌های مدرن و اتوماسیون با هوش مصنوعی.">
+<title>آرات زارعی | توسعه‌دهندهٔ وب، ربات و ابزارهای هوشمند</title>
+<meta name="description" content="پورتفولیوی آرات زارعی؛ توسعه‌دهندهٔ وب، ربات و ابزارهای هوشمند. ساخت ربات تلگرامی و مینی‌اپ، وب‌سایت‌های مدرن و اتوماسیون با هوش مصنوعی.">
 <meta name="theme-color" content="#0b0b0d">
-<meta property="og:title" content="آرات زارعی | توسعه‌دهندهٔ ربات، وب و ابزارهای هوشمند">
+<meta property="og:title" content="آرات زارعی | توسعه‌دهندهٔ وب، ربات و ابزارهای هوشمند">
 <meta property="og:description" content="ساخت ربات تلگرامی و مینی‌اپ، وب‌سایت‌های مدرن و اتوماسیون با هوش مصنوعی.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="./">
@@ -160,8 +160,9 @@
   footer{border-top:1px solid var(--line); padding:26px 0; color:var(--muted); font-size:13.5px}
   .foot-in{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
 
-  .rv{opacity:0; transform:translateY(14px); transition:.6s cubic-bezier(.2,.7,.2,1)}
-  .rv.in{opacity:1; transform:none}
+  .rv{opacity:0; transform:translateY(34px) scale(.985); filter:blur(8px);
+    transition:.95s cubic-bezier(.16,1,.3,1)}
+  .rv.in{opacity:1; transform:none; filter:none}
 
   /* ===== animations ===== */
   @keyframes rise{from{opacity:0; transform:translateY(22px)} to{opacity:1; transform:none}}
@@ -208,10 +209,23 @@
   .btn-primary, .btn-dark{transition:.2s}
   a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
 
-  .stagger > *{opacity:0; transform:translateY(18px); transition:.6s cubic-bezier(.2,.7,.2,1)}
-  .stagger.in > *{opacity:1; transform:none}
-  .stagger.in > .card:hover, .stagger.in > .skill-card:hover{transform:translateY(-3px)}
+  .stagger > *{opacity:0; transform:translate(30px,74px) rotate(1.8deg) scale(.93);
+    filter:blur(7px); transition:.9s cubic-bezier(.16,1,.3,1)}
+  .stagger.in > *{opacity:1; transform:none; filter:none}
+  .stagger.in > .card:hover, .stagger.in > .skill-card:hover{transform:translateY(-4px) scale(1.012)}
   .stagger.in > .timeline li:hover{transform:translateX(-4px)}
+
+  /* sticky stacking cards */
+  .stack{display:flex; flex-direction:column; gap:20px; padding-bottom:6px}
+  .stack > *{position:sticky; top:96px; will-change:transform}
+  .stack .card{flex-direction:row; flex-wrap:wrap; align-items:center; gap:14px 22px;
+    box-shadow:0 -14px 40px -24px rgba(0,0,0,.95); border-color:#2e2e35}
+  .stack .card .num{margin-bottom:0; flex:none}
+  .stack .card h3{margin:0; flex:none}
+  .stack .card p{flex:1 1 240px; margin:0}
+  .stack .card .tags{flex:none}
+  .stack .card .foot{margin-top:0; padding-top:0; flex:none}
+  .stack .card:last-child{margin-bottom:10px}
 
   .ticker{overflow:hidden; border-block:1px solid var(--line); background:var(--surface);
     padding:11px 0; white-space:nowrap; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
@@ -294,7 +308,7 @@
         <div>
           <span class="eyebrow rise d1">● آمادهٔ همکاری</span>
           <h1 class="rise d2">سلام، من <span class="grad">آرات زارعی</span> هستم</h1>
-          <p class="role rise d3">توسعه‌دهندهٔ ربات، وب و ابزارهای هوشمند</p>
+          <p class="role rise d3">توسعه‌دهندهٔ وب، ربات و ابزارهای هوشمند</p>
           <p class="lead rise d4">دانشجو و برنامه‌نویس هوش مصنوعی و توسعه‌دهندهٔ ابزارهای دیجیتال. روی ساخت ربات، وب و خودکارسازی فرآیندها کار می‌کنم و هدفم خلق راه‌کارهای خلاقانه و کاربردیه.</p>
           <div class="badges">
             <span class="badge">۳ سال تجربه</span>
@@ -382,7 +396,7 @@
       <span class="eyebrow">نمونه‌کارها</span>
       <h2 class="sec-title">پروژه‌های منتخب</h2>
       <p class="sec-sub">برای دیدن هر پروژه، مستقیم وارد رباتش توی تلگرام شو.</p>
-      <div class="grid g3 stagger">
+      <div class="stack" id="workStack">
         <article class="card">
           <div class="num">01</div>
           <h3>فروشگاه تلگرامی Diaz Shop</h3>
@@ -422,7 +436,7 @@
       <span class="eyebrow">خدمات</span>
       <h2 class="sec-title">چی می‌تونم برات انجام بدم؟</h2>
       <p class="sec-sub">از یه ربات ساده تا سامانهٔ کامل — بسته به نیازت.</p>
-      <div class="grid g3 stagger">
+      <div class="stack" id="svcStack">
         <div class="card">
           <div class="num">01</div>
           <h3>ساخت ربات و مینی‌اپ تلگرام</h3>
@@ -455,9 +469,9 @@
           <p>سریع‌ترین راه: پیام مستقیم در تلگرام. معمولاً همون روز جواب میدم.</p>
         </div>
         <div class="socials">
-          <a href="https://t.me/MrArat" target="_blank" rel="noopener">تلگرام @MrArat</a>
+          <a href="https://t.me/MrArat" target="_blank" rel="noopener">Telegram</a>
           <a href="mailto:Aratzarei@gmail.com">Gmail</a>
-          <a href="https://instagram.com/iarawt" target="_blank" rel="noopener">اینستاگرام iarawt</a>
+          <a href="https://instagram.com/iarawt" target="_blank" rel="noopener">Instagram</a>
         </div>
         <a class="btn btn-primary" href="https://t.me/MrArat" target="_blank" rel="noopener">ارسال پیام</a>
       </div>
@@ -504,13 +518,42 @@
     io.observe(g);
   });
 
-  // scroll progress bar
+  // scroll progress bar + parallax + stacked-card depth
   const bar = document.getElementById('scrollBar');
+  const heroGrid = document.querySelector('.hero-grid');
+  const stacks = [...document.querySelectorAll('.stack')];
+  const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+
+  stacks.forEach(s => [...s.children].forEach((c, i) => { c.style.top = (78 + i * 20) + 'px'; }));
+
   const onScroll = () => {
+    const y = window.scrollY;
     const h = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+
+    if (heroGrid && y < 900) {
+      heroGrid.style.transform = 'translateY(' + (y * 0.10).toFixed(1) + 'px)';
+      heroGrid.style.opacity = String(clamp(1 - y / 750, .35, 1));
+    }
+
+    stacks.forEach(s => {
+      const cards = [...s.children];
+      cards.forEach((c, i) => {
+        const next = cards[i + 1];
+        if (!next) return;
+        const cr = c.getBoundingClientRect(), nr = next.getBoundingClientRect();
+        const k = clamp((cr.top + cr.height - nr.top) / Math.max(cr.height * .7, 1), 0, 1);
+        if (k > 0.02) {
+          c.style.transform = 'scale(' + (1 - 0.055 * k).toFixed(3) + ')';
+          c.style.opacity = String(1 - 0.4 * k);
+        } else {
+          c.style.transform = ''; c.style.opacity = '';
+        }
+      });
+    });
   };
   document.addEventListener('scroll', onScroll, {passive: true});
+  window.addEventListener('resize', onScroll);
   onScroll();
 </script>
 </body>
