@@ -55,7 +55,7 @@
     display:grid;place-items:center;font-family:monospace;font-size:16px;font-weight:800;
     border:2px solid var(--accent); box-shadow:0 0 0 1px #26262b;
   }
-  nav.desk{display:flex; gap:6px; align-items:center}
+  nav.desk{display:none}
   nav.desk a{padding:8px 13px; border-radius:9px; font-size:14.5px; color:var(--muted); font-weight:500}
   nav.desk a:hover{background:#1c1c21; color:var(--ink)}
   .btn{
@@ -70,15 +70,41 @@
   .btn-ghost{background:var(--surface); color:var(--ink); border-color:var(--line)}
   .btn-ghost:hover{border-color:#3f3f46; transform:translateY(-1px)}
   .btn-sm{padding:9px 16px; font-size:14px}
-  .burger{display:none; width:42px;height:42px; border-radius:10px; border:1px solid var(--line);
-    background:var(--surface); cursor:pointer; align-items:center; justify-content:center}
+  .burger{display:flex; width:42px;height:42px; border-radius:10px; border:1px solid var(--line);
+    background:var(--surface); cursor:pointer; align-items:center; justify-content:center;
+    transition:.25s; flex:none}
+  .burger:hover{border-color:var(--accent); transform:translateY(-1px)}
+  .burger[aria-expanded="true"]{background:var(--accent); border-color:var(--accent)}
+  .burger[aria-expanded="true"] span,
+  .burger[aria-expanded="true"] span::before,
+  .burger[aria-expanded="true"] span::after{background:#fff}
+  .burger[aria-expanded="true"] span{background:transparent}
+  .burger[aria-expanded="true"] span::before{top:0; transform:rotate(45deg)}
+  .burger[aria-expanded="true"] span::after{top:0; transform:rotate(-45deg)}
   .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative}
   .burger span::before,.burger span::after{content:''; position:absolute; left:0; width:18px; height:2px; background:var(--ink)}
   .burger span::before{top:-6px} .burger span::after{top:6px}
-  #mobileNav{display:none; border-top:1px solid var(--line); background:var(--surface); padding:10px 22px 18px}
-  #mobileNav a{display:block; padding:12px 8px; border-radius:9px; font-weight:600; color:var(--ink)}
-  #mobileNav a:hover{background:#1c1c21}
-  #mobileNav.open{display:block}
+  #mobileNav{
+    position:absolute; left:0; right:0; top:64px;
+    background:rgba(16,16,19,.96); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line); padding:10px 0 16px;
+    opacity:0; transform:translateY(-12px); pointer-events:none;
+    transition:.34s cubic-bezier(.16,1,.3,1); box-shadow:0 24px 44px -28px rgba(0,0,0,.95);
+  }
+  #mobileNav.open{opacity:1; transform:none; pointer-events:auto}
+  #mobileNav a{display:block; padding:13px 24px; font-weight:600; color:var(--ink);
+    opacity:0; transform:translateY(10px); transition:.4s cubic-bezier(.16,1,.3,1); border-radius:0}
+  #mobileNav a:hover{background:#1c1c21; color:#f87171}
+  #mobileNav.open a{opacity:1; transform:none}
+  #mobileNav a:nth-child(1){transition-delay:.05s} #mobileNav a:nth-child(2){transition-delay:.1s}
+  #mobileNav a:nth-child(3){transition-delay:.15s} #mobileNav a:nth-child(4){transition-delay:.2s}
+  #mobileNav a:nth-child(5){transition-delay:.25s} #mobileNav a:nth-child(6){transition-delay:.3s}
+  .head-status{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; color:#a1a1aa;
+    display:flex; align-items:center; gap:7px; white-space:nowrap}
+  .head-status i{width:7px;height:7px;border-radius:50%;background:#22c55e;display:block;
+    animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.55)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+  .bar .right{display:flex; align-items:center; gap:12px}
 
   /* hero */
   .hero{padding:96px 0 70px; position:relative}
@@ -249,7 +275,7 @@
     .hero-grid{grid-template-columns:1fr; gap:28px}
   }
   @media (max-width:720px){
-    nav.desk, .bar .btn{display:none}
+    .bar .btn, .head-status{display:none}
     .burger{display:flex}
     section{padding:60px 0}
     .g3{grid-template-columns:1fr}
@@ -266,15 +292,11 @@
 <header>
   <div class="wrap bar">
     <a class="logo" href="#top"><span class="dot">A</span> آرات</a>
-    <nav class="desk" aria-label="منوی اصلی">
-      <a href="#about">درباره من</a>
-      <a href="#skills">مهارت‌ها</a>
-      <a href="#work">نمونه‌کارها</a>
-      <a href="#services">خدمات</a>
-      <a href="#contact">تماس</a>
-    </nav>
-    <a class="btn btn-primary btn-sm" href="#contact">سفارش پروژه</a>
-    <button class="burger" id="burger" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mobileNav"><span></span></button>
+    <div class="right">
+      <span class="head-status"><i></i> در دسترس برای همکاری</span>
+      <a class="btn btn-primary btn-sm" href="#contact">سفارش پروژه</a>
+      <button class="burger" id="burger" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mobileNav"><span></span></button>
+    </div>
   </div>
   <div id="mobileNav">
     <a href="#about">درباره من</a>
@@ -282,6 +304,7 @@
     <a href="#work">نمونه‌کارها</a>
     <a href="#services">خدمات</a>
     <a href="#contact">تماس</a>
+    <a href="https://t.me/MrArat" target="_blank" rel="noopener" style="color:#f87171">سفارش پروژه ↗</a>
   </div>
 </header>
 
@@ -500,6 +523,16 @@
   mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     mnav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
   }));
+  document.addEventListener('click', e => {
+    if (mnav.classList.contains('open') && !mnav.contains(e.target) && !burger.contains(e.target)) {
+      mnav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mnav.classList.contains('open')) {
+      mnav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
+    }
+  });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 
