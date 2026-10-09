@@ -20,7 +20,7 @@
     --dark:#000000; --radius:14px; --maxw:1120px;
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth; scroll-padding-top:76px; overflow-x:hidden}
+  html{scroll-behavior:smooth; scroll-padding-top:76px}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
   body{
     margin:0; background:var(--bg); color:var(--ink);
@@ -109,7 +109,7 @@
   .bar .right{display:flex; align-items:center; gap:12px}
 
   /* hero */
-  .hero{padding:96px 0 70px; position:relative}
+  .hero{padding:96px 0 70px; position:relative; overflow:hidden}
   .hero-grid{display:grid; grid-template-columns:1.3fr .8fr; gap:40px; align-items:center}
   .code-card{
     background:var(--dark); color:#e7e5e4; border-radius:16px; padding:20px 18px;
