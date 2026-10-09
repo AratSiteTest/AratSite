@@ -168,11 +168,9 @@
   .about{display:grid; grid-template-columns:1.4fr .9fr; gap:20px; align-items:stretch}
   .about .box{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:24px; min-width:0}
   .timeline{list-style:none; padding:0; margin:0}
-  .timeline li{position:relative; padding:0 22px 16px 0; border-right:2px solid var(--line)}
+  .timeline li{position:relative; padding:0 34px 20px 0; border-right:2px solid var(--line)}
   .timeline li:last-child{border-right-color:transparent}
-  .timeline li::before{content:''; position:absolute; right:-7px; top:6px; width:12px;height:12px;
-    border-radius:50%; background:var(--surface); border:3px solid var(--accent)}
-  .timeline b{font-size:15px} .timeline span{display:block; font-size:13.5px; color:var(--muted)}
+  .timeline b{font-size:15px; display:block; margin-bottom:2px} .timeline span{display:block; font-size:13.5px; color:var(--muted)}
 
   /* contact */
   .contact{background:var(--surface); border:1px solid var(--line); border-radius:20px;
@@ -280,9 +278,32 @@
     section{padding:60px 0}
     .g3{grid-template-columns:1fr}
     .contact{padding:26px}
-    .hero{padding:70px 0 50px}
+    .hero{padding:38px 0 44px}
     .code-card{font-size:12.5px}
   }
+
+  /* ===== v2: ارتقا ===== */
+  .hero::before{content:''; position:absolute; top:-150px; right:-90px; width:540px;height:540px;border-radius:50%;
+    background:radial-gradient(circle,rgba(220,38,38,.17),transparent 65%); filter:blur(28px); pointer-events:none; z-index:0}
+  .hero .wrap{position:relative; z-index:1}
+  .hero h1 .grad{background:linear-gradient(90deg,#fca5a5,#dc2626,#f87171,#dc2626); background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent; animation:sheen2 5s linear infinite}
+  @keyframes sheen2{to{background-position:200% center}}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:32px;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px}
+  .stat i{display:block;width:26px;height:3px;border-radius:3px;background:var(--accent);margin-bottom:10px}
+  .stat b{display:block;font-size:clamp(19px,3vw,26px);font-weight:900;line-height:1.25;text-align:right}
+  .stat span{font-size:12.5px;color:var(--muted);font-weight:600}
+  #cursorGlow{position:fixed;left:0;top:0;width:460px;height:460px;border-radius:50%;pointer-events:none;z-index:5;
+    background:radial-gradient(circle,rgba(220,38,38,.12),transparent 62%);transform:translate(-50%,-50%);opacity:0;transition:opacity .5s}
+  .glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;
+    background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.10),transparent 62%)}
+  .skill-card:hover .glare{opacity:1}
+  .timeline .tl-ic{position:absolute; right:-15px; top:0; width:28px;height:28px; border-radius:9px;
+    background:#101014; border:1px solid rgba(220,38,38,.5); display:grid; place-items:center}
+  .timeline .tl-ic svg{width:14px;height:14px;stroke:#f87171;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  @media (hover:none){ #cursorGlow{display:none} }
+  @media (max-width:560px){ .stats{grid-template-columns:1fr;gap:12px; padding:16px} .stat b{text-align:right} }
 </style>
 </head>
 <body>
@@ -291,7 +312,7 @@
 
 <header>
   <div class="wrap bar">
-    <a class="logo" href="#top"><span class="dot">A</span> آرات</a>
+    <a class="logo" href="#top"><span class="dot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 4.5 20M12 4l7.5 16M8 14.5h8"/></svg></span> آرات</a>
     <div class="right">
       <span class="head-status"><i></i> در دسترس برای همکاری</span>
       <a class="btn btn-primary btn-sm" href="#contact">سفارش پروژه</a>
@@ -329,7 +350,7 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <span class="eyebrow rise d1">● آمادهٔ همکاری</span>
+          <span class="eyebrow rise d1">● توسعه‌دهندهٔ مستقل</span>
           <h1 class="rise d2">سلام، من <span class="grad">آرات زارعی</span> هستم</h1>
           <p class="role rise d3">توسعه‌دهندهٔ وب، ربات و ابزارهای هوشمند</p>
           <p class="lead rise d4">دانشجو و برنامه‌نویس هوش مصنوعی و توسعه‌دهندهٔ ابزارهای دیجیتال. روی ساخت ربات، وب و خودکارسازی فرآیندها کار می‌کنم و هدفم خلق راه‌کارهای خلاقانه و کاربردیه.</p>
@@ -341,6 +362,11 @@
           <div class="cta rise d5">
             <a class="btn btn-primary" href="#work">مشاهدهٔ نمونه‌کارها</a>
             <a class="btn btn-dark" href="https://t.me/MrArat" target="_blank" rel="noopener">پیام در تلگرام</a>
+          </div>
+          <div class="stats rise d5">
+            <div class="stat"><i></i><b data-count="3">۰</b><span>سال تجربه</span></div>
+            <div class="stat"><i></i><b data-count="2">۰</b><span>پروژهٔ آنلاین</span></div>
+            <div class="stat"><i></i><b data-count="24" data-suffix="/۷">۰</b><span>پشتیبانی مستقیم</span></div>
           </div>
         </div>
         <div class="code-card rise d4" aria-hidden="true">
@@ -377,10 +403,10 @@
         <div class="box">
           <h3 style="font-size:15.5px;color:var(--accent-ink)">مسیر کاری</h3>
           <ul class="timeline">
-            <li><b>بررسی و نقشه</b><span>نیازسنجی و انتخاب ساختار مناسب</span></li>
-            <li><b>طراحی و نمونه اولیه</b><span>ظاهر و جریان کار قبل از شروع کدنویسی</span></li>
-            <li><b>توسعه</b><span>پیاده‌سازی ربات، وب یا ابزار مورد نظر</span></li>
-            <li><b>تحویل و پشتیبانی</b><span>آموزش، مستندسازی و رفع ایرادهای بعدی</span></li>
+            <li><span class="tl-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span><b>بررسی و نقشه</b><span>نیازسنجی و انتخاب ساختار مناسب</span></li>
+            <li><span class="tl-ic"><svg viewBox="0 0 24 24"><path d="M12 19 4 21l2-8L17 4l3 3Z"/><path d="m14 6 3 3"/></svg></span><b>طراحی و نمونه اولیه</b><span>ظاهر و جریان کار قبل از شروع کدنویسی</span></li>
+            <li><span class="tl-ic"><svg viewBox="0 0 24 24"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/></svg></span><b>توسعه</b><span>پیاده‌سازی ربات، وب یا ابزار مورد نظر</span></li>
+            <li><span class="tl-ic"><svg viewBox="0 0 24 24"><path d="M5 15c-1 1-1 4-1 4s3 0 4-1"/><path d="M9 12a12 12 0 0 1 8-3c2 .3 3 1 3 1s.7 1 1 3a12 12 0 0 1-3 8l-9-9Z"/><circle cx="15" cy="9" r="1.6"/></svg></span><b>تحویل و پشتیبانی</b><span>آموزش، مستندسازی و رفع ایرادهای بعدی</span></li>
           </ul>
         </div>
       </div>
@@ -583,6 +609,44 @@
       });
     });
   };
+  // شمارندهٔ آمار هیرو
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const end = +e.target.dataset.count, suf = e.target.dataset.suffix || '', t0 = performance.now(), dur = 1100;
+    const tick = now => {
+      const k = Math.min((now - t0) / dur, 1), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+      e.target.textContent = String(v).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]) + suf;
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }), {threshold: .6});
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  // نور دنبال‌کنندهٔ کرسر (دسکتاپ)
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    const gl = document.createElement('div'); gl.id = 'cursorGlow'; document.body.appendChild(gl);
+    let cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy, shown = false;
+    addEventListener('pointermove', e => {
+      tx = e.clientX; ty = e.clientY;
+      if (!shown) { shown = true; gl.style.opacity = '1'; cx = tx; cy = ty; }
+    }, {passive: true});
+    (function loop(){ cx += (tx - cx) * .09; cy += (ty - cy) * .09;
+      gl.style.transform = 'translate(' + (cx - 230) + 'px,' + (cy - 230) + 'px)'; requestAnimationFrame(loop); })();
+  }
+
+  // tilt کارت‌های مهارت + خیره روی همهٔ کارت‌ها
+  document.querySelectorAll('.skill-card').forEach(c => {
+    const g = document.createElement('span'); g.className = 'glare'; c.appendChild(g);
+    c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      g.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+      g.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      c.style.transform = 'translateY(-4px) perspective(700px) rotateX(' + ((.5 - py) * 7).toFixed(2) + 'deg) rotateY(' + ((px - .5) * 7).toFixed(2) + 'deg)';
+    });
+    c.addEventListener('pointerleave', () => { c.style.transform = ''; });
+  });
+
   document.addEventListener('scroll', onScroll, {passive: true});
   window.addEventListener('resize', onScroll);
   onScroll();
