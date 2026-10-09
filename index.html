@@ -20,7 +20,7 @@
     --dark:#000000; --radius:14px; --maxw:1120px;
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth; scroll-padding-top:76px}
+  html{scroll-behavior:smooth; scroll-padding-top:76px; overflow-x:hidden}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
   body{
     margin:0; background:var(--bg); color:var(--ink);
@@ -39,8 +39,10 @@
   }
   .sec-title{font-size:clamp(24px,3.4vw,34px); font-weight:800}
   .sec-sub{color:var(--muted); max-width:60ch; margin:0 0 42px}
-  .skip{position:absolute; right:-9999px; top:0; background:var(--surface); color:var(--ink); padding:10px 16px; z-index:99}
-  .skip:focus{right:12px; top:12px}
+  .skip{position:fixed; top:8px; right:8px; background:var(--surface); color:var(--ink); padding:10px 16px;
+    border:1px solid var(--line); border-radius:10px; z-index:99;
+    clip:rect(0 0 0 0); clip-path:inset(50%); overflow:hidden; white-space:nowrap; width:1px; height:1px}
+  .skip:focus{clip:auto; clip-path:none; width:auto; height:auto}
 
   /* header */
   header{
